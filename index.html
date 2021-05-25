@@ -733,8 +733,11 @@
             }
         }
         function setBackground() {
+
+            var imageObject = document.createElement("IMG");
+            imageObject.setAttribute("src", bubble_full);
             var ss = new createjs.SpriteSheet({
-                images: [queue.getResult("bubble_full")],
+                images: [imageObject],
                 framerate: 25,
                 frames: [
                     [283, 1, 184, 322, 0, 0, 0],
