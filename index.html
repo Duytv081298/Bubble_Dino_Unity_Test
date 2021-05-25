@@ -1808,10 +1808,10 @@
                 emit1 = setInterval(emitParticles, Math.random() * 700 + 300);
                 emit2 = setInterval(emitParticles, Math.random() * 700 + 300);
                 var colorarr = [];
-                for (let i = 0; i < game.indexBubbleInlocal.length; i++) {
-                    for (let j = 0; j < game.indexBubbleInlocal[i].length; j++) {
-                        if (colorarr.indexOf(game.indexBubbleInlocal[i][j]) === -1 && game.indexBubbleInlocal[i][j] != 100 && game.indexBubbleInlocal[i][j] >= 0 && game.indexBubbleInlocal[i][j] <= 7) {
-                            colorarr.push(game.indexBubbleInlocal[i][j]);
+                for (let i = 0; i < mapIndexD.length; i++) {
+                    for (let j = 0; j < mapIndexD[i].length; j++) {
+                        if (colorarr.indexOf(mapIndexD[i][j]) === -1 && mapIndexD[i][j] != 100 && mapIndexD[i][j] >= 0 && mapIndexD[i][j] <= 7) {
+                            colorarr.push(mapIndexD[i][j]);
                         }
                     }
                 }
