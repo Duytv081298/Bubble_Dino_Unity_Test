@@ -490,22 +490,7 @@
             game.indexBubbleInlocal = mapIndexD;
             game.map = setMap();
 
-            switch (level) {
-                case 1:
-                    var bg = new createjs.Sprite(spriteSheet, "bg_original");
-                    bg.scaleX = stage.canvas.width / bg.getBounds().width;
-                    bg.scaleY = stage.canvas.height / bg.getBounds().height;
-                    stage.addChild(bg);
-                    break;
-                case 2:
-                    var bg = new createjs.Sprite(spriteSheet, "bg_sakura");
-                    bg.scaleX = stage.canvas.width / bg.getBounds().width;
-                    bg.scaleY = stage.canvas.height / bg.getBounds().height;
-                    stage.addChild(bg);
-                    break;
-                default:
-                    break;
-            }
+            setBackgroundInGame(level)
             setDinosaursAndBird();
             renderBubble();
             setPlayer(1);
@@ -520,6 +505,15 @@
             canvas.removeEventListener("touchstart", onMouseDown, supportsPassive ? { passive: true } : false);
             canvas.removeEventListener("touchmove", onPressMove, supportsPassive ? { passive: true } : false);
             canvas.removeEventListener("touchend", onMouseUp, supportsPassive ? { passive: true } : false);
+        }
+        function setBackgroundInGame(level) {
+            var nameBg = ''
+            if (level == 1) nameBg = "bg_original"
+            if (level == 2) nameBg = "bg_sakura"
+            var bg = new createjs.Sprite(spriteSheet, nameBg);
+            bg.scaleX = stage.canvas.width / bg.getBounds().width;
+            bg.scaleY = stage.canvas.height / bg.getBounds().height;
+            stage.addChild(bg);
         }
         function changeOrientation() {
             screenSize = mraid.getScreenSize();
@@ -543,7 +537,7 @@
                 win = true;
                 stage.removeAllChildren();
                 particles = [];
-                setBackground();
+                setBackgroundInGame(levelPlayer)
                 setDinosaursAndBird();
                 setPlayer(2);
                 setStar();
@@ -575,7 +569,8 @@
                 game.map = setMap();
                 containerMain.removeAllChildren();
                 stage.removeAllChildren();
-                setBackground();
+                
+                setBackgroundInGame(levelPlayer)
                 setDinosaursAndBird();
                 renderBubble();
                 setPlayer();
