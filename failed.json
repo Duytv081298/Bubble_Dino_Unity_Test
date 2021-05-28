@@ -1,0 +1,23 @@
+{
+
+"images": [
+    "failed.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 195, 75, 0, 0, 0],
+    [1, 78, 100, 38, 0, 0, -4]
+],
+
+"animations": {
+    "failed": { "frames": [0] },
+    "btn_again": { "frames": [1] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:c3460008c9a3ef9bd2ff4a3c5f9e6526:09d7ace84a3a6bb74742b2c746a9cdd7:4d563843bc165566519f570c8b6c4d5d$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}
