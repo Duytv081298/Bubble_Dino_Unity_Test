@@ -488,13 +488,20 @@
 
         function setBackgroundInGame(level) {
             console.log(level);
-            var nameBg = '';
-            if (level == 1) nameBg = "bg_original";
-            else if (level == 2) nameBg = "bg_sakura";
-            var bg = new createjs.Sprite(spriteSheet, nameBg);
-            bg.scaleX = stage.canvas.width / bg.getBounds().width;
-            bg.scaleY = stage.canvas.height / bg.getBounds().height;
-            stage.addChild(bg);
+            if (level == 1) {
+                nameBg = "bg_original";
+                var bg = new createjs.Sprite(spriteSheet, "bg_original");
+                bg.scaleX = stage.canvas.width / bg.getBounds().width;
+                bg.scaleY = stage.canvas.height / bg.getBounds().height;
+                stage.addChild(bg);
+            }
+            else if (level == 2) {
+                var bg = new createjs.Sprite(spriteSheet, "bg_sakura");
+                bg.scaleX = stage.canvas.width / bg.getBounds().width;
+                bg.scaleY = stage.canvas.height / bg.getBounds().height;
+                stage.addChild(bg);
+            }
+
         }
         function addEvent() {
             canvas.addEventListener("touchstart", onMouseDown, supportsPassive ? { passive: true } : false);
