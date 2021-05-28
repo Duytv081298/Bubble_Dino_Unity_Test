@@ -446,9 +446,9 @@
             }
             function clickButton(target, level) {
 
-                document.getElementById("myCanvas").setAttribute("class", "stylecanvas");
-                var x = document.getElementById("myCanvas").getAttribute("class")
-                console.log(x);
+                // document.getElementById("myCanvas").setAttribute("class", "stylecanvas");
+                // var x = document.getElementById("myCanvas").getAttribute("class")
+                // console.log(x);
 
                 stage.removeChild(handChoose);
                 clearInterval(moveTayChoose);
@@ -2160,7 +2160,7 @@
 
 
 <body style="margin:0" onload="gameinit();">
-    <canvas id="myCanvas" width="320px" height="480px"></canvas>
+    <canvas id="myCanvas" width="320px" height="480px" class="stylecanvas"></canvas>
 </body>
 
 <script>
