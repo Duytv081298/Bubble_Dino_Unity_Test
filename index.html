@@ -330,9 +330,6 @@
             createjs.Tween.get(txtChoose, { loop: 2 })
                 .to({ scale: scaleTxt - 0.2 }, 1000)
                 .to({ scale: scaleTxt }, 1000);
-            setTimeout(function () {
-                createjs.Tween.get(txtChoose).to({ scale: scaleTxt - 0.2, alpha: 0 }, 400);
-            }, 4500);
             var handChoose = new createjs.Sprite(spriteSheet, "tay");
             handChoose.scale = (stage.canvas.width / 10) / handChoose.getBounds().width;
             handChoose.x = (stage.canvas.width - handChoose.getBounds().width * handChoose.scale) / 2;
