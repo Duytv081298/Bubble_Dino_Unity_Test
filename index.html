@@ -101,7 +101,6 @@
             }
         }
         async function displayAd() {
-            console.log('ssssss');
             createjs.RotationPlugin.install();
             createjs.MotionGuidePlugin.install();
             setStage();
@@ -306,7 +305,7 @@
             setLevel()
         }
         function setLevel() {
-            setBackground();
+            // setBackground();
             var icon = new createjs.Sprite(spriteSheet, "icon");
             icon.scale = (stage.canvas.width * 2 / 3) / icon.getBounds().width;
             icon.x = (stage.canvas.width - icon.getBounds().width * icon.scale) / 2;
@@ -666,7 +665,6 @@
             }
         }
         function setBackground() {
-
             var imageObject = document.createElement("IMG");
             imageObject.setAttribute("src", bubble_full);
             var ss = new createjs.SpriteSheet({
