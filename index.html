@@ -1020,7 +1020,8 @@
             var itemEnd = getItemEnd();
             console.log(itemEnd);
             if (itemEnd.y != 0) {
-                for (let i = 0; i <= 11; i++) {
+                if(bigSize){
+                    for (let i = 0; i <= 18; i++) {
                     loop1:
                     for (let row = itemEnd.y; row >= 0; row--) {
                         var item = mapDuong[row][i];
@@ -1037,6 +1038,26 @@
                         }
                     }
                 }
+                }else{
+                    for (let i = 0; i <= 11; i++) {
+                    loop1:
+                    for (let row = itemEnd.y; row >= 0; row--) {
+                        var item = mapDuong[row][i];
+                        if (item) {
+                            if (item.color != null && item.color < 20 && item.color != 7 && item.color != 8) {
+                                if (item.color >= 10) {
+                                    arColor.push(item.color - 10);
+                                    break loop1;
+                                } else {
+                                    arColor.push(item.color);
+                                    break loop1;
+                                };
+                            };
+                        }
+                    }
+                }
+                }
+               
             } else {
                 for (let i = 0; i < mapDuong[0].length; i++) {
                     const element = mapDuong[0][i];
