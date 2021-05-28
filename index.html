@@ -470,30 +470,30 @@
             game.bubble.currentHeight = Math.round((stage.canvas.width / 11) * 100) / 100;
             game.bubble.scale = Math.round((stage.canvas.width / 11 / 50) * 100) / 100;
 
+
+            // if (level == 1) {
+            //     var myImg = document.createElement("img");
+            //     myImg.id = 'img';
+            //     document.body.appendChild(myImg);
+            //     document.getElementById("img").src = bgHorizontalOrigina;
+            //     var style = document.createElement("style");
+            //     style.innerHTML = `#img{position: absolute; left: 0;top: 0;width: 100%; height: 100%; -webkit-filter: blur(1.5px); filter: blur(1.5px);}`;
+            //     document.head.appendChild(style);
+            //     document.getElementsByTagName("CANVAS")[0].setAttribute("class", "styleCanvas");
+            // }
+            // else if (level == 2) {
+            //     var myImg = document.createElement("img");
+            //     myImg.id = 'img';
+            //     document.body.appendChild(myImg);
+            //     document.getElementById("img").src = bgHorizontalSakura;
+            //     var style = document.createElement("style");
+            //     style.innerHTML = `#img{position: absolute; left: 0;top: 0;width: 100%; height: 100%; -webkit-filter: blur(1.5px); filter: blur(1.5px);}`;
+            //     document.head.appendChild(style);
+            //     document.getElementsByTagName("CANVAS")[0].setAttribute("class", "styleCanvas");
+            // }
+            setBackgroundInGame(level);
             game.indexBubbleInlocal = mapIndexD;
             game.map = setMap();
-
-            setBackgroundInGame(level);
-            if (level == 1) {
-                var myImg = document.createElement("img");
-                myImg.id = 'img';
-                document.body.appendChild(myImg);
-                document.getElementById("img").src = bgHorizontalOrigina;
-                var style = document.createElement("style");
-                style.innerHTML = `#img{position: absolute; left: 0;top: 0;width: 100%; height: 100%; -webkit-filter: blur(1.5px); filter: blur(1.5px);}`;
-                document.head.appendChild(style);
-                document.getElementsByTagName("CANVAS")[0].setAttribute("class", "styleCanvas");
-            }
-            else if (level == 2) {
-                var myImg = document.createElement("img");
-                myImg.id = 'img';
-                document.body.appendChild(myImg);
-                document.getElementById("img").src = bgHorizontalSakura;
-                var style = document.createElement("style");
-                style.innerHTML = `#img{position: absolute; left: 0;top: 0;width: 100%; height: 100%; -webkit-filter: blur(1.5px); filter: blur(1.5px);}`;
-                document.head.appendChild(style);
-                document.getElementsByTagName("CANVAS")[0].setAttribute("class", "styleCanvas");
-            }
             setDinosaursAndBird();
             renderBubble();
             setPlayer(1);
@@ -507,12 +507,31 @@
                 bg.scaleX = stage.canvas.width / bg.getBounds().width;
                 bg.scaleY = stage.canvas.height / bg.getBounds().height;
                 stage.addChild(bg);
+
+                
+                var myImg = document.createElement("img");
+                myImg.id = 'img';
+                document.body.appendChild(myImg);
+                document.getElementById("img").src = bgHorizontalOrigina;
+                var style = document.createElement("style");
+                style.innerHTML = `#img{position: absolute; left: 0;top: 0;width: 100%; height: 100%; -webkit-filter: blur(1.5px); filter: blur(1.5px);}`;
+                document.head.appendChild(style);
+                document.getElementById("canvas").setAttribute("class", "stylecanvas");
             }
             else if (level == 2) {
                 var bg = new createjs.Sprite(spriteSheet, "bg_sakura");
                 bg.scaleX = stage.canvas.width / bg.getBounds().width;
                 bg.scaleY = stage.canvas.height / bg.getBounds().height;
                 stage.addChild(bg);
+
+                var myImg = document.createElement("img");
+                myImg.id = 'img';
+                document.body.appendChild(myImg);
+                document.getElementById("img").src = bgHorizontalSakura;
+                var style = document.createElement("style");
+                style.innerHTML = `#img{position: absolute; left: 0;top: 0;width: 100%; height: 100%; -webkit-filter: blur(1.5px); filter: blur(1.5px);}`;
+                document.head.appendChild(style);
+                document.getElementById("canvas").setAttribute("class", "stylecanvas");
             }
 
         }
@@ -2120,7 +2139,7 @@
             box-shadow: 20px 0 24px -4px #ffccd5, -20px 0 16px -4px #ffccd5;
         }
 
-        .styleCanvas {
+        .stylecanvas {
             border-right: 3px solid white;
             border-left: 3px solid white;
         }
