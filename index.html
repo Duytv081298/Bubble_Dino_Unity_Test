@@ -327,7 +327,7 @@
             txtChoose.textAlign = "center";
             stage.addChild(icon, btnEasy, btnHard, btnMedium, txtChoose);
             var scaleTxt = txtChoose.scale;
-            createjs.Tween.get(txtChoose, { loop: 2 })
+            createjs.Tween.get(txtChoose, { loop: true })
                 .to({ scale: scaleTxt - 0.2 }, 1000)
                 .to({ scale: scaleTxt }, 1000);
             var handChoose = new createjs.Sprite(spriteSheet, "tay");
