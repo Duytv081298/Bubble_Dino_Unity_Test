@@ -508,7 +508,7 @@
                 bg.scaleY = stage.canvas.height / bg.getBounds().height;
                 stage.addChild(bg);
 
-                
+
                 var myImg = document.createElement("img");
                 myImg.id = 'img';
                 document.body.appendChild(myImg);
@@ -517,6 +517,9 @@
                 style.innerHTML = `#img{position: absolute; left: 0;top: 0;width: 100%; height: 100%; -webkit-filter: blur(1.5px); filter: blur(1.5px);}`;
                 document.head.appendChild(style);
                 document.getElementById("canvas").setAttribute("class", "stylecanvas");
+
+                var x = document.getElementById("canvas").getAttribute("class")
+                console.log(x);
             }
             else if (level == 2) {
                 var bg = new createjs.Sprite(spriteSheet, "bg_sakura");
@@ -532,6 +535,9 @@
                 style.innerHTML = `#img{position: absolute; left: 0;top: 0;width: 100%; height: 100%; -webkit-filter: blur(1.5px); filter: blur(1.5px);}`;
                 document.head.appendChild(style);
                 document.getElementById("canvas").setAttribute("class", "stylecanvas");
+
+                var x = document.getElementById("canvas").getAttribute("class")
+                console.log(x);
             }
 
         }
