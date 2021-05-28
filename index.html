@@ -8,7 +8,6 @@
     <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1524180/RotationPlugin.js"></script>
     <script src="mraid.js"></script>
     <script>
-
         var moveTayChoose;
         var canvas, stage, context, width, height, screenSize, update = true;
         var supportsPassive = false, pressMove = false;
@@ -28,7 +27,7 @@
                 color: null
             },
             scores: 0,
-            total_score: 38
+            total_score: 2
         };
         var mapAm = [], mapDuong = [], rowDuong;
         var player = {
@@ -1826,10 +1825,25 @@
                     );
                 createjs.Tween.get(play_again)
                     .wait(600)
-                    .to({ rotation: 90, x: stage.canvas.width * 2 / 3 }, 300, createjs.Ease.linear)
-                    .wait(300)
-                    .to({ rotation: 0, x: (stage.canvas.width - play_again.getBounds().width * play_again.scale) / 2, y: stage.canvas.height * 1.6 / 3 }, 800, createjs.Ease.linear);
-
+                    .to({ x: (stage.canvas.width - play_again.getBounds().width * play_again.scale) / 2, y: stage.canvas.height * 1.6 / 3 }, 800, createjs.Ease.linear)
+                    .call(
+                        () => {
+                            var x = play_again.x,
+                                y = play_again.y,
+                                scale = stage.canvas.width / 3 / play_again.getBounds().width;;
+                            createjs.Tween.get(play_again, { loop: true })
+                                .to(
+                                    {
+                                        scale: stage.canvas.width / 7 / play_again.getBounds().width,
+                                        x: (stage.canvas.width - (stage.canvas.width / 7 / play_again.getBounds().width) * play_again.getBounds().width) / 2,
+                                        y: y - (stage.canvas.width / 7 - stage.canvas.width / 8) / 10,
+                                    },
+                                    500,
+                                    createjs.Ease.linear
+                                )
+                                .to({ scaleX: scale, scaleY: scale, x: x, y: y }, 500, createjs.Ease.linear);
+                        }
+                    );
                 play_again.addEventListener("click", () => { getLinkInstall() }, false);
             }
         }
