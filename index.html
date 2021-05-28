@@ -2094,7 +2094,6 @@
         html,
         body {
             background-color: #19101C;
-            padding: 0px;
         }
 
         canvas {
@@ -2104,6 +2103,8 @@
             right: 0px;
             margin: 0px auto;
             box-shadow: 20px 0 24px -4px #ffccd5, -20px 0 16px -4px #ffccd5;
+            /* border-right: 3px solid white;
+            border-left: 3px solid white; */
         }
     </style>
     <title>Bubble Dino</title>
@@ -2111,8 +2112,7 @@
 
 
 <body style="margin:0" onload="gameinit();">
-    <img id="img" src="" /> 
-    <canvas id="myCanvas" width="320px" height="480px"></canvas>
+    <img id="img" src="" /> <canvas id="myCanvas" width="320px" height="480px"></canvas>
 </body>
 
 <script>
