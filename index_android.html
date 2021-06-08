@@ -76,6 +76,7 @@
             detectMobile();
             if (document.readyState === "complete") {
                 if (typeof mraid !== "undefined") {
+                    mraid.setOrientationProperties({ allowOrientationChange: false });
                     screenSize = mraid.getScreenSize();
                     width = screenSize.width;
                     height = screenSize.height;
@@ -210,66 +211,10 @@
             renderBubble();
             setPlayer(4);
         }
-        function changeOrientation() {
-            screenSize = mraid.getScreenSize();
-            width = screenSize.width;
-            height = screenSize.height;
-            if (window.orientation == 90 || window.orientation == -90) {
-                height = screenSize.height;
-                width = height / 1.7;
-            };
-            stage.canvas.height = height;
-            stage.canvas.width = width;
-            addEvent();
-            game.bubble.currentWidth = Math.round((stage.canvas.width / 11) * 100) / 100;
-            game.bubble.currentHeight = Math.round((stage.canvas.width / 11) * 100) / 100;
-            game.bubble.scale = Math.round((stage.canvas.width / 11 / 50) * 100) / 100;
-            var arrIndex = [];
-            for (let i = 0; i < game.map.length; i++) {
-                const row = game.map[i];
-                var arr = [];
-                var push = false;
-                var turn = true;
-                for (let j = 0; j < row.length; j++) {
-                    const item = row[j];
-                    if (turn) {
-                        if (item.color != null) {
-                            push = true;
-                            turn = false;
-                        };
-                    };
-                    arr.push(item.color != null ? item.color : -1);
-                }
-                if (push) arrIndex.push(arr);
-            };
-            game.indexBubbleInlocal = arrIndex;
-            game.map = setMap();
-            containerMain.removeAllChildren();
-            stage.removeAllChildren();
-            setBackground();
-            clearInterval(ani_install_now);
-            setDinosaursAndBird();
-            renderBubble();
-            setPlayer();
-            if (win == false) {
-                clearInterval(emit1);
-                clearInterval(emit2);
-
-                clearInterval(renBubbleEnd);
-                win = true;
-                stage.removeAllChildren();
-                particles = [];
-                setBackground();
-                setDinosaursAndBird();
-                setPlayer(4);
-                setStar();
-            }
-        }
         function addEvent() {
             canvas.addEventListener("touchstart", onMouseDown, supportsPassive ? { passive: true } : false);
             canvas.addEventListener("touchmove", onPressMove, supportsPassive ? { passive: true } : false);
             canvas.addEventListener("touchend", onMouseUp, supportsPassive ? { passive: true } : false);
-            window.addEventListener('orientationchange', changeOrientation, supportsPassive ? { passive: true } : false);
         }
         function removeEvent() {
             canvas.removeEventListener("touchstart", onMouseDown, supportsPassive ? { passive: true } : false);
@@ -448,6 +393,7 @@
             dinosaur.addChild(body_dinosaur, hand_dinosaur);
 
 
+
             install_now = new createjs.Sprite(spriteSheet, "install_now");
             install_now.scale = stage.canvas.width / 3.7 / install_now.getBounds().width;
             install_now.x = (stage.canvas.width - install_now.getBounds().width * install_now.scaleX) / 2;
@@ -468,7 +414,7 @@
                 if (up) {
                     install_now.scale = stage.canvas.width / 4 / install_now.getBounds().width;
                     install_now.x = (stage.canvas.width - install_now.scale * install_now.getBounds().width) / 2;
-                    up = false
+                    up = false;
                 } else {
                     install_now.scale = scale;
                     install_now.x = x;
@@ -529,8 +475,6 @@
                 }
             }
 
-            mapDuong = [];
-            mapAm = [];
             game.map.forEach((row) => {
                 if (row[0].y >= 0) mapDuong.push(row);
                 else if (row[0].y < 0) mapAm.push(row);
@@ -1379,7 +1323,6 @@
                 return complete;
             }
         }
-        var emit1, emit1, renBubbleEnd;
         async function setStar() {
             var complete = await checkComplete();
             if ((complete == true && win == true && game.scores == game.total_score) || (game.scores == game.total_score && win == true && game.total_score != 0)) {
@@ -1387,12 +1330,13 @@
                 clearInterval(handMove);
                 win = false;
                 removeEvent();
+
                 containerMain.removeAllChildren();
                 stage.removeChild(containerLine);
                 stage.removeChild(install_now);
                 clearInterval(ani_install_now);
-                emit1 = setInterval(emitParticles, Math.random() * 700 + 300);
-                emit2 = setInterval(emitParticles, Math.random() * 700 + 300);
+                setInterval(emitParticles, Math.random() * 700 + 300);
+                setInterval(emitParticles, Math.random() * 700 + 300);
                 var colorarr = [];
                 for (let i = 0; i < mapIndexR.length; i++) {
                     for (let j = 0; j < mapIndexR[i].length; j++) {
