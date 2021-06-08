@@ -1374,6 +1374,8 @@
                 return complete;
             }
         }
+        
+        var emit1, emit1, renBubbleEnd;
         async function setStar() {
             var complete = await checkComplete();
             if ((complete == true && win == true && game.scores == game.total_score) || (game.scores == game.total_score && win == true && game.total_score != 0)) {
