@@ -529,6 +529,8 @@
                 }
             }
 
+            mapDuong = [];
+            mapAm = [];
             game.map.forEach((row) => {
                 if (row[0].y >= 0) mapDuong.push(row);
                 else if (row[0].y < 0) mapAm.push(row);
