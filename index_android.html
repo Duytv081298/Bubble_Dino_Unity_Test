@@ -13,7 +13,7 @@
         var supportsPassive = false, pressMove = false;
         var containerLine = new createjs.Container();
         var indexClarity = [];
-        var outer1, outer2, install_now;
+        var outer1, outer2, install_now, ani_install_now;
         var queue, game = {
             indexBubbleInlocal: null,
             map: [],
@@ -394,13 +394,14 @@
             hand_dinosaur.y = stage.canvas.height - (body_dinosaur.getBounds().height * body_dinosaur.scaleX) / 2.1 - stage.canvas.height / 11;
             dinosaur.addChild(body_dinosaur, hand_dinosaur);
 
-            install_now = new createjs.Sprite(spriteSheet, "install_now");
-            install_now.scaleX = stage.canvas.width / 4.5 / install_now.getBounds().width;
-            install_now.scaleY = stage.canvas.width / 4.5 / install_now.getBounds().width;
-            install_now.x = (stage.canvas.width - install_now.getBounds().width * install_now.scaleX) / 2;
-            install_now.y = stage.canvas.height - install_now.getBounds().height * install_now.scaleY * 1.7;
 
-            createjs.Tween.get(hand_dinosaur, { loop: true }).to({ rotation: -25 }, 1000).to({ rotation: 0 }, 1000);
+            install_now = new createjs.Sprite(spriteSheet, "install_now");
+            install_now.scaleX = stage.canvas.width / 3.5 / install_now.getBounds().width;
+            install_now.scaleY = stage.canvas.width / 3.5 / install_now.getBounds().width;
+            install_now.x = (stage.canvas.width - install_now.getBounds().width * install_now.scaleX) / 2;
+            install_now.y = stage.canvas.height - install_now.getBounds().height * install_now.scaleY;
+
+            createjs.Tween.get(hand_dinosaur, { loop: true }).to({ rotation: -25 }, 700).to({ rotation: 0 }, 700);
 
             var bird = new createjs.Sprite(spriteSheet, "owl");
             bird.scale = stage.canvas.width / 5 / bird.getBounds().width;
@@ -408,20 +409,19 @@
             bird.y = stage.canvas.height - bird.getBounds().height * bird.scaleX - stage.canvas.height / 11;
             stage.addChild(dinosaur, bird, install_now);
             var x = install_now.x,
-                y = install_now.y,
-                scale = stage.canvas.width / 4.5 / install_now.getBounds().width;
-            createjs.Tween.get(install_now, { loop: true })
-                .to(
-                    {
-                        scaleX: stage.canvas.width / 7 / bird.getBounds().width,
-                        scaleY: stage.canvas.width / 7 / bird.getBounds().width,
-                        x: (stage.canvas.width - (stage.canvas.width / 7 / bird.getBounds().width) * install_now.getBounds().width) / 2,
-                        y: y - (stage.canvas.width / 7 - stage.canvas.width / 8) / 10,
-                    },
-                    500,
-                    createjs.Ease.linear
-                )
-                .to({ scaleX: scale, scaleY: scale, x: x, y: y }, 500, createjs.Ease.linear);
+                scale = stage.canvas.width / 3.5 / install_now.getBounds().width;
+            var up = true
+            ani_install_now = setInterval(() => {
+                if (up) {
+                    install_now.scale = stage.canvas.width / 5 / bird.getBounds().width
+                    install_now.x = (stage.canvas.width - install_now.scale * install_now.getBounds().width) / 2
+                    up = false
+                } else {
+                    install_now.scale = scale
+                    install_now.x = x
+                    up = true
+                }
+            }, 270);
             install_now.addEventListener("click", () => { getLinkInstall() }, false);
             outer1 = new createjs.Sprite(spriteSheet, "CircleLight");
             outer1.scale = stage.canvas.width / 5.2 / outer1.getBounds().width;
@@ -1334,6 +1334,7 @@
                 containerMain.removeAllChildren();
                 stage.removeChild(containerLine);
                 stage.removeChild(install_now);
+                clearInterval(ani_install_now);
                 setInterval(emitParticles, Math.random() * 700 + 300);
                 setInterval(emitParticles, Math.random() * 700 + 300);
                 var colorarr = [];
@@ -1371,29 +1372,25 @@
                     });
                 });
                 var btn_continue = new createjs.Sprite(spriteSheet, "play_now");
-                btn_continue.scaleX = stage.canvas.width / 3 / btn_continue.getBounds().width;
-                btn_continue.scaleY = stage.canvas.width / 3 / btn_continue.getBounds().width;
+                btn_continue.scale = stage.canvas.width / 2.5 / btn_continue.getBounds().width;
                 btn_continue.x = (stage.canvas.width - btn_continue.scaleX * btn_continue.getBounds().width) / 2;
-                btn_continue.y = -btn_continue.getBounds().height;
+                btn_continue.y = stage.canvas.height + btn_continue.getBounds().height;
                 stage.addChild(btn_continue);
                 createjs.Tween.get(btn_continue)
-                    .to({ y: stage.canvas.height / 2.6 }, 500, createjs.Ease.linear)
+                    .to({ y: stage.canvas.height / 1.9 }, 500, createjs.Ease.linear)
                     .call(() => {
                         var x = btn_continue.x,
                             y = btn_continue.y,
-                            scale = stage.canvas.width / 3 / btn_continue.getBounds().width;
+                            scale = stage.canvas.width / 2.5 / btn_continue.getBounds().width,
+                            newScale = stage.canvas.width / 2.2 / btn_continue.getBounds().width;
                         createjs.Tween.get(btn_continue, { loop: true })
                             .to(
                                 {
-                                    scaleX: stage.canvas.width / 2.5 / btn_continue.getBounds().width,
-                                    scaleY: stage.canvas.width / 2.5 / btn_continue.getBounds().width,
-                                    x: (stage.canvas.width - (stage.canvas.width / 2.5 / btn_continue.getBounds().width) * btn_continue.getBounds().width) / 2,
-                                    y: y - (stage.canvas.width / 2.5 - stage.canvas.width / 3) / 2,
-                                },
-                                500,
-                                createjs.Ease.linear
-                            )
-                            .to({ scaleX: scale, scaleY: scale, x: x, y: y }, 500, createjs.Ease.linear);
+                                    scale: newScale,
+                                    x: (stage.canvas.width - newScale * btn_continue.getBounds().width) / 2,
+                                    y: y - btn_continue.getBounds().width * newScale * 0.01,
+                                }, 200, createjs.Ease.linear)
+                            .to({ scale: scale, x: x, y: y }, 200, createjs.Ease.linear);
                     });
                 btn_continue.addEventListener("click", () => { getLinkInstall() }, false);
                 removeEvent();
