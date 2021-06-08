@@ -1459,10 +1459,10 @@
                                     x: (stage.canvas.width - newScale * btn_continue.getBounds().width) / 2,
                                     y: y - btn_continue.getBounds().width * newScale * 0.01,
                                 },
-                                200,
+                                250,
                                 createjs.Ease.linear
                             )
-                            .to({ scale: scale, x: x, y: y }, 200, createjs.Ease.linear);
+                            .to({ scale: scale, x: x, y: y }, 250, createjs.Ease.linear);
                     });
                 btn_continue.addEventListener("click", () => { getLinkInstall() }, false);
                 removeEvent();
